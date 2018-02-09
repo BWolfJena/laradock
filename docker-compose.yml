@@ -266,22 +266,22 @@ services:
     #     - frontend
     #     - backend
 
-### phpMyAdmin Container ####################################
+## phpMyAdmin Container ####################################
 
-    # phpmyadmin:
-    #   build: ./phpmyadmin
-    #   environment:
-    #     - PMA_ARBITRARY=1
-    #     - MYSQL_USER=${PMA_USER}
-    #     - MYSQL_PASSWORD=${PMA_PASSWORD}
-    #     - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
-    #   ports:
-    #     - "${PMA_PORT}:80"
-    #   depends_on:
-    #     - "${PMA_DB_ENGINE}"
-    #   networks:
-    #     - frontend
-    #     - backend
+    phpmyadmin:
+      build: ./phpmyadmin
+      environment:
+        - PMA_ARBITRARY=1
+        - MYSQL_USER=bwolf
+        - MYSQL_PASSWORD=secret
+        - MYSQL_ROOT_PASSWORD=secret
+      ports:
+        - "8000:80"
+      depends_on:
+        - mysql
+      networks:
+        - frontend
+        - backend
 
 ### pgAdmin Container #######################################
 
@@ -331,6 +331,15 @@ services:
         - "${MAILDEV_SMTP_PORT}:25"
       networks:
         - frontend
+        - backend
+
+    algorithm:
+      build: ../src/algorithm
+      volumes:
+          - ../src/algorithm/src:/usr/src/app/src/
+      ports:
+        - "1337:80"
+      networks:
         - backend
 
 ### Selenium Container ########################################
