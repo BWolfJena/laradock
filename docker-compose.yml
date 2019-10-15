@@ -388,36 +388,36 @@ services:
 
 
 ### Cassandra ############################################
-    cassandra:
-      build: ./cassandra
-      ports:
-        - "${CASSANDRA_TRANSPORT_PORT_NUMBER}:7000"
-        - "${CASSANDRA_JMX_PORT_NUMBER}:7199"
-        - "${CASSANDRA_CQL_PORT_NUMBER}:9042"
-      privileged: true
-      environment:
-        - CASSANDRA_VERSION=${CASSANDRA_VERSION}
-        - CASSANDRA_TRANSPORT_PORT_NUMBER=${CASSANDRA_TRANSPORT_PORT_NUMBER}
-        - CASSANDRA_JMX_PORT_NUMBER=${CASSANDRA_JMX_PORT_NUMBER}
-        - CASSANDRA_CQL_PORT_NUMBER=${CASSANDRA_CQL_PORT_NUMBER}
-        - CASSANDRA_USER=${CASSANDRA_USER}
-        - CASSANDRA_PASSWORD_SEEDER=${CASSANDRA_PASSWORD_SEEDER}
-        - CASSANDRA_PASSWORD=${CASSANDRA_PASSWORD}
-        - CASSANDRA_NUM_TOKENS=${CASSANDRA_NUM_TOKENS}
-        - CASSANDRA_HOST=${CASSANDRA_HOST}
-        - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
-        - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
-        - CASSANDRA_ENDPOINT_SNITCH=${CASSANDRA_ENDPOINT_SNITCH}
-        - CASSANDRA_ENABLE_RPC=${CASSANDRA_ENABLE_RPC}
-        - CASSANDRA_DATACENTER=${CASSANDRA_DATACENTER}
-        - CASSANDRA_RACK=${CASSANDRA_RACK}
-      hostname: laradock-cassandra
-      volumes:
-        - ${DATA_PATH_HOST}/cassandra:/var/lib/cassandra
-      depends_on:
-        - php-fpm
-      networks:
-        - backend
+    # cassandra:
+    #   build: ./cassandra
+    #   ports:
+    #     - "${CASSANDRA_TRANSPORT_PORT_NUMBER}:7000"
+    #     - "${CASSANDRA_JMX_PORT_NUMBER}:7199"
+    #     - "${CASSANDRA_CQL_PORT_NUMBER}:9042"
+    #   privileged: true
+    #   environment:
+    #     - CASSANDRA_VERSION=${CASSANDRA_VERSION}
+    #     - CASSANDRA_TRANSPORT_PORT_NUMBER=${CASSANDRA_TRANSPORT_PORT_NUMBER}
+    #     - CASSANDRA_JMX_PORT_NUMBER=${CASSANDRA_JMX_PORT_NUMBER}
+    #     - CASSANDRA_CQL_PORT_NUMBER=${CASSANDRA_CQL_PORT_NUMBER}
+    #     - CASSANDRA_USER=${CASSANDRA_USER}
+    #     - CASSANDRA_PASSWORD_SEEDER=${CASSANDRA_PASSWORD_SEEDER}
+    #     - CASSANDRA_PASSWORD=${CASSANDRA_PASSWORD}
+    #     - CASSANDRA_NUM_TOKENS=${CASSANDRA_NUM_TOKENS}
+    #     - CASSANDRA_HOST=${CASSANDRA_HOST}
+    #     - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
+    #     - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
+    #     - CASSANDRA_ENDPOINT_SNITCH=${CASSANDRA_ENDPOINT_SNITCH}
+    #     - CASSANDRA_ENABLE_RPC=${CASSANDRA_ENABLE_RPC}
+    #     - CASSANDRA_DATACENTER=${CASSANDRA_DATACENTER}
+    #     - CASSANDRA_RACK=${CASSANDRA_RACK}
+    #   hostname: laradock-cassandra
+    #   volumes:
+    #     - ${DATA_PATH_HOST}/cassandra:/var/lib/cassandra
+    #   depends_on:
+    #     - php-fpm
+    #   networks:
+    #     - backend
 
     # beanstalkd-console:
     #   build: ./beanstalkd-console
@@ -534,34 +534,34 @@ services:
     #     - frontend
 
 ### Graylog #######################################
-    graylog:
-        build: ./graylog
-        environment:
-          - GRAYLOG_PASSWORD_SECRET=${GRAYLOG_PASSWORD}
-          - GRAYLOG_ROOT_PASSWORD_SHA2=${GRAYLOG_SHA256_PASSWORD}
-          - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:${GRAYLOG_PORT}/
-        links:
-          - mongo
-          - elasticsearch
-        depends_on:
-          - mongo
-          - elasticsearch
-        ports:
-          # Graylog web interface and REST API
-          - ${GRAYLOG_PORT}:9000
-          # Syslog TCP
-          - ${GRAYLOG_SYSLOG_TCP_PORT}:514
-          # Syslog UDP
-          - ${GRAYLOG_SYSLOG_UDP_PORT}:514/udp
-          # GELF TCP
-          - ${GRAYLOG_GELF_TCP_PORT}:12201
-          # GELF UDP
-          - ${GRAYLOG_GELF_UDP_PORT}:12201/udp
-        user: root
-        volumes:
-          - ./graylog/config:/usr/share/graylog/data/config
-        networks:
-          - backend
+    # graylog:
+    #     build: ./graylog
+    #     environment:
+    #       - GRAYLOG_PASSWORD_SECRET=${GRAYLOG_PASSWORD}
+    #       - GRAYLOG_ROOT_PASSWORD_SHA2=${GRAYLOG_SHA256_PASSWORD}
+    #       - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:${GRAYLOG_PORT}/
+    #     links:
+    #       - mongo
+    #       - elasticsearch
+    #     depends_on:
+    #       - mongo
+    #       - elasticsearch
+    #     ports:
+    #       # Graylog web interface and REST API
+    #       - ${GRAYLOG_PORT}:9000
+    #       # Syslog TCP
+    #       - ${GRAYLOG_SYSLOG_TCP_PORT}:514
+    #       # Syslog UDP
+    #       - ${GRAYLOG_SYSLOG_UDP_PORT}:514/udp
+    #       # GELF TCP
+    #       - ${GRAYLOG_GELF_TCP_PORT}:12201
+    #       # GELF UDP
+    #       - ${GRAYLOG_GELF_UDP_PORT}:12201/udp
+    #     user: root
+    #     volumes:
+    #       - ./graylog/config:/usr/share/graylog/data/config
+    #     networks:
+    #       - backend
 
 ### Laravel Echo Server #######################################
     # laravel-echo-server:
@@ -578,99 +578,99 @@ services:
     #     - backend
 
 ### Portainer ################################################
-    portainer:
-      build:
-        context: ./portainer
-      volumes:
-        - ${DATA_PATH_HOST}/portainer_data:/data
-        - /var/run/docker.sock:/var/run/docker.sock
-      extra_hosts:
-        - "dockerhost:${DOCKER_HOST_IP}"
-      ports:
-        - 9010:9000
-      networks:
-        - backend
+    # portainer:
+    #   build:
+    #     context: ./portainer
+    #   volumes:
+    #     - ${DATA_PATH_HOST}/portainer_data:/data
+    #     - /var/run/docker.sock:/var/run/docker.sock
+    #   extra_hosts:
+    #     - "dockerhost:${DOCKER_HOST_IP}"
+    #   ports:
+    #     - 9010:9000
+    #   networks:
+    #     - backend
 
 ### Gitlab ################################################
-    gitlab:
-      build:
-        context: ./gitlab
-      environment:
-        GITLAB_OMNIBUS_CONFIG: |
-          external_url '${GITLAB_DOMAIN_NAME}'
-          redis['enable'] = false
-          nginx['listen_https'] = false
-          nginx['listen_port'] = 80
-          nginx['custom_gitlab_server_config'] = "set_real_ip_from 172.0.0.0/8;\nreal_ip_header X-Real-IP;\nreal_ip_recursive on;"
-          postgresql['enable'] = false
-          gitlab_rails['trusted_proxies'] = ['caddy','nginx','apache2']
-          gitlab_rails['redis_host'] = 'redis'
-          gitlab_rails['redis_database'] = 8
-          gitlab_rails['db_host'] = '${GITLAB_POSTGRES_HOST}'
-          gitlab_rails['db_username'] = '${GITLAB_POSTGRES_USER}'
-          gitlab_rails['db_password'] = '${GITLAB_POSTGRES_PASSWORD}'
-          gitlab_rails['db_database'] = '${GITLAB_POSTGRES_DB}'
-          gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
-          gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_HOST_SSH_PORT}
-      volumes:
-        - ${DATA_PATH_HOST}/gitlab/config:/etc/gitlab
-        - ${DATA_PATH_HOST}/gitlab/data:/var/opt/gitlab
-        - ${GITLAB_HOST_LOG_PATH}:/var/log/gitlab
-      ports:
-        - "${GITLAB_HOST_HTTP_PORT}:80"
-        - "${GITLAB_HOST_HTTPS_PORT}:443"
-        - "${GITLAB_HOST_SSH_PORT}:22"
-      networks:
-        - backend
-      depends_on:
-        - redis
-        - postgres
-    gitlab-runner:
-      image: gitlab/gitlab-runner:latest
-      environment:
-        - CI_SERVER_URL=${GITLAB_CI_SERVER_URL}
-        - REGISTRATION_TOKEN=${GITLAB_RUNNER_REGISTRATION_TOKEN}
-        - RUNNER_NAME=${COMPOSE_PROJECT_NAME}-runner
-        - REGISTER_NON_INTERACTIVE=${GITLAB_REGISTER_NON_INTERACTIVE}
-        - RUNNER_EXECUTOR=shell
-      volumes:
-        - ${DATA_PATH_HOST}/gitlab/runner:/etc/gitlab-runner
-        - /var/run/docker.sock:/var/run/docker.sock:rw
-
-### JupyterHub #########################################
-    jupyterhub:
-      build:
-        context: ./jupyterhub
-      depends_on:
-        - postgres
-        - jupyterhub-user
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock:rw
-        - ${DATA_PATH_HOST}/jupyterhub/:/data
-        - ${JUPYTERHUB_CUSTOM_CONFIG}:/jupyterhub_config.py
-        - ${JUPYTERHUB_USER_DATA}:/user-data
-        - ${JUPYTERHUB_USER_LIST}:/userlist
-      networks:
-        - backend
-      ports:
-        - "${JUPYTERHUB_PORT}:80"
-      environment:
-        - TERM=xterm
-        - JUPYTERHUB_USER_DATA=${JUPYTERHUB_USER_DATA}
-        - JUPYTERHUB_POSTGRES_DB=${JUPYTERHUB_POSTGRES_DB}
-        - JUPYTERHUB_POSTGRES_USER=${JUPYTERHUB_POSTGRES_USER}
-        - JUPYTERHUB_POSTGRES_HOST=${JUPYTERHUB_POSTGRES_HOST}
-        - JUPYTERHUB_POSTGRES_PASSWORD=${JUPYTERHUB_POSTGRES_PASSWORD}
-        - JUPYTERHUB_OAUTH_CALLBACK_URL=${JUPYTERHUB_OAUTH_CALLBACK_URL}
-        - JUPYTERHUB_OAUTH_CLIENT_ID=${JUPYTERHUB_OAUTH_CLIENT_ID}
-        - JUPYTERHUB_OAUTH_CLIENT_SECRET=${JUPYTERHUB_OAUTH_CLIENT_SECRET}
-        - JUPYTERHUB_LOCAL_NOTEBOOK_IMAGE=${COMPOSE_PROJECT_NAME}_jupyterhub-user
-        - JUPYTERHUB_ENABLE_NVIDIA=${JUPYTERHUB_ENABLE_NVIDIA}
-    jupyterhub-user:
-      build:
-        context: ./jupyterhub
-        dockerfile: Dockerfile.user
-      command: ["sh", "-c", "echo \"build only\""]
+#     gitlab:
+#       build:
+#         context: ./gitlab
+#       environment:
+#         GITLAB_OMNIBUS_CONFIG: |
+#           external_url '${GITLAB_DOMAIN_NAME}'
+#           redis['enable'] = false
+#           nginx['listen_https'] = false
+#           nginx['listen_port'] = 80
+#           nginx['custom_gitlab_server_config'] = "set_real_ip_from 172.0.0.0/8;\nreal_ip_header X-Real-IP;\nreal_ip_recursive on;"
+#           postgresql['enable'] = false
+#           gitlab_rails['trusted_proxies'] = ['caddy','nginx','apache2']
+#           gitlab_rails['redis_host'] = 'redis'
+#           gitlab_rails['redis_database'] = 8
+#           gitlab_rails['db_host'] = '${GITLAB_POSTGRES_HOST}'
+#           gitlab_rails['db_username'] = '${GITLAB_POSTGRES_USER}'
+#           gitlab_rails['db_password'] = '${GITLAB_POSTGRES_PASSWORD}'
+#           gitlab_rails['db_database'] = '${GITLAB_POSTGRES_DB}'
+#           gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
+#           gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_HOST_SSH_PORT}
+#       volumes:
+#         - ${DATA_PATH_HOST}/gitlab/config:/etc/gitlab
+#         - ${DATA_PATH_HOST}/gitlab/data:/var/opt/gitlab
+#         - ${GITLAB_HOST_LOG_PATH}:/var/log/gitlab
+#       ports:
+#         - "${GITLAB_HOST_HTTP_PORT}:80"
+#         - "${GITLAB_HOST_HTTPS_PORT}:443"
+#         - "${GITLAB_HOST_SSH_PORT}:22"
+#       networks:
+#         - backend
+#       depends_on:
+#         - redis
+#         - postgres
+#     gitlab-runner:
+#       image: gitlab/gitlab-runner:latest
+#       environment:
+#         - CI_SERVER_URL=${GITLAB_CI_SERVER_URL}
+#         - REGISTRATION_TOKEN=${GITLAB_RUNNER_REGISTRATION_TOKEN}
+#         - RUNNER_NAME=${COMPOSE_PROJECT_NAME}-runner
+#         - REGISTER_NON_INTERACTIVE=${GITLAB_REGISTER_NON_INTERACTIVE}
+#         - RUNNER_EXECUTOR=shell
+#       volumes:
+#         - ${DATA_PATH_HOST}/gitlab/runner:/etc/gitlab-runner
+#         - /var/run/docker.sock:/var/run/docker.sock:rw
+#
+# ### JupyterHub #########################################
+#     jupyterhub:
+#       build:
+#         context: ./jupyterhub
+#       depends_on:
+#         - postgres
+#         - jupyterhub-user
+#       volumes:
+#         - /var/run/docker.sock:/var/run/docker.sock:rw
+#         - ${DATA_PATH_HOST}/jupyterhub/:/data
+#         - ${JUPYTERHUB_CUSTOM_CONFIG}:/jupyterhub_config.py
+#         - ${JUPYTERHUB_USER_DATA}:/user-data
+#         - ${JUPYTERHUB_USER_LIST}:/userlist
+#       networks:
+#         - backend
+#       ports:
+#         - "${JUPYTERHUB_PORT}:80"
+#       environment:
+#         - TERM=xterm
+#         - JUPYTERHUB_USER_DATA=${JUPYTERHUB_USER_DATA}
+#         - JUPYTERHUB_POSTGRES_DB=${JUPYTERHUB_POSTGRES_DB}
+#         - JUPYTERHUB_POSTGRES_USER=${JUPYTERHUB_POSTGRES_USER}
+#         - JUPYTERHUB_POSTGRES_HOST=${JUPYTERHUB_POSTGRES_HOST}
+#         - JUPYTERHUB_POSTGRES_PASSWORD=${JUPYTERHUB_POSTGRES_PASSWORD}
+#         - JUPYTERHUB_OAUTH_CALLBACK_URL=${JUPYTERHUB_OAUTH_CALLBACK_URL}
+#         - JUPYTERHUB_OAUTH_CLIENT_ID=${JUPYTERHUB_OAUTH_CLIENT_ID}
+#         - JUPYTERHUB_OAUTH_CLIENT_SECRET=${JUPYTERHUB_OAUTH_CLIENT_SECRET}
+#         - JUPYTERHUB_LOCAL_NOTEBOOK_IMAGE=${COMPOSE_PROJECT_NAME}_jupyterhub-user
+#         - JUPYTERHUB_ENABLE_NVIDIA=${JUPYTERHUB_ENABLE_NVIDIA}
+#     jupyterhub-user:
+#       build:
+#         context: ./jupyterhub
+#         dockerfile: Dockerfile.user
+#       command: ["sh", "-c", "echo \"build only\""]
 
 volumes:
   mysql:
