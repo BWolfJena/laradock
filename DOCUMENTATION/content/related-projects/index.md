@@ -1,5 +1,5 @@
 ---
-title: Related Projects
+title: 6. Related Projects
 type: index
 weight: 6
 ---
@@ -14,5 +14,6 @@ These Docker Compose projects have piqued our interest:
 * [MageDock](https://github.com/ojhaujjwal/magedock) by [Ujjwal Ojha](https://github.com/ojhaujjwal)
 * [RubyDev-Dock](https://github.com/scudelletti/rubydev-dock) by [Diogo Scudelletti](https://github.com/scudelletti)
 * [NoDock](https://github.com/Osedea/nodock) by [Osedea](https://github.com/Osedea)
+* [Dockery](https://github.com/taufek/dockery) by [Taufek](https://github.com/Taufek)
 
 If you want your project listed here, please open an issue.
